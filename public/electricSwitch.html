@@ -1,0 +1,52 @@
+<div class="container-fluid lakers">
+    <!-- 配线切换功能模块 -->
+
+    <!-- 标题 -->
+
+    <!-- 内容  -->
+    <div class="row">
+        <div class="col-3">
+            <h4 class="wireTitleMid"> <i class="icon ion-arrow-swap"></i>映射关系图</h4>
+            <div id="switchTree" style="overflow-y:auto;overflow-x:hidden;"></div>
+        </div>
+        <div class="col-9">
+            <div style="display: flex;flex-wrap:wrap;justify-content: flex-start;width:768px;margin:auto">
+                <div ng-repeat=" item in bindData" style="position: relative;">
+                  <div ng-switch="item.wireSwitchState" class="patchSwitchFa">
+                    <div ng-switch-when="0" class="patchSwitch-other bgc-primary shadowHover shadow">
+                      <h2>LRU</h2>
+                      <h6>{{ item.wireSwitchState }}</h6>
+                    </div>
+                    <div ng-switch-when="1" class="patchSwitch-other bgc-sim shadowHover shadow">
+                      <h2>SIM</h2>
+                      <h6>{{ item.wireSwitchState }}</h6>
+                    </div>
+                    <div ng-switch-when="2" class="patchSwitch-other bgc-error shadowHover shadow">
+                      <h2>OPEN</h2>
+                      <h6>{{ item.wireSwitchState }}</h6>
+                    </div>
+                    <div class="patchOption">
+                      <div class="patchOptionItem"  style="width: 33%;" ng-click="switchWire(item, 0)">
+                        真件
+                      </div>
+                      <div class="patchOptionItem"  style="width: 33%;" ng-click="switchWire(item, 1)">
+                        仿真件
+                      </div>
+                      <div class="patchOptionItem"  style="width: 33%;" ng-click="switchWire(item, 2)">
+                        断开
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <!-- 配线切换功能按钮组 -->
+
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-primary" ng-click="storeWireSwitchData()">保存切换数据</button>
+        </div>
+    </div>
+</div>

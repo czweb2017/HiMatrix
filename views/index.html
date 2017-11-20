@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="css/spc.css">
+    <link rel="stylesheet" href="jstree/dist/themes/default/style.min.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/extention.css">
+    <link rel="stylesheet" href="css/wire-switch.css">
+    <title>Document</title>
+</head>
+<body ng-app="routingDemoApp" id="ngapp">
+        <nav class="navbar navbar-expand navbar-light bg-light">
+          <a class="navbar-brand" href="#">配电配线系统</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <!-- <li class="nav-item active">
+                <a class="nav-link" href="#/">产品介绍</a>
+              </li> -->
+              <li class="nav-item">
+                  <a class="nav-link" href="#/wire">配线绑定</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#/wireSwitch">配线切换</a>
+              </li>
+              <!-- <li class="nav-item">
+                  <a class="nav-link" href="#/electric">配电绑定</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#/electricSwitch">配线切换</a>
+              </li> -->
+              <!-- <li class="nav-item">
+                  <a class="nav-link" href="#/electric">Electric</a>
+              </li> -->
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+        <div ng-view></div>
+
+        <!-- <div class="container-fluid lakers">
+            <div class="row">
+                <div class="col-6">
+                    <h1><i class="iocn ion-jet"></i> Custom System</h1>
+                    <div id="smlSys" style="overflow-y:auto;overflow-x:hidden;"></div>
+                </div>
+                <div class="col-6">
+                    <h1><i class="iocn ion-jet"></i> Devices</h1>
+                    <div id="realSys" style="overflow-y:auto;overflow-x:hidden;"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 ml-auto" style="padding-top: 1rem;">
+                    <button id="bind" class="btn btn-success">Bind</button>
+                    <button id="save" class="btn btn-warning">save</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Launch demo modal
+                      </button>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col">
+                <div id="hhh"></div>
+            </div>
+        </div>
+
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-route.min.js"></script>
+        <script src="jstree/dist/jstree.js"></script>
+        <script src="js/myng.js"></script>
+        <script src="js/controllers/wire.js"></script>
+        <script src="js/controllers/wireSwitch.js"></script>
+        <script src="js/controllers/electric.js"></script>
+        <script src="js/controllers/electricSwitch.js"></script>
+        <script src="js/tree.js"></script>
+        <script>
+            var screenHeight = $(document).height()
+        </script>
+</body>
+</html>

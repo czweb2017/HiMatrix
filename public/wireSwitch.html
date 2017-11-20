@@ -1,0 +1,154 @@
+<div class="container-fluid lakers">
+    <!-- 配线切换功能模块 -->
+    <!-- 内容  -->
+    <div class="row">
+        <div class="col-4" id="treeHome">
+            <h4 class="wireTitleMid text-center">映射关系图</h4>
+            <div id="switchTree" style="overflow-y:auto;overflow-x:hidden;"></div>
+        </div>
+        <div class="col-8 text-center">
+          <h4 class="wireTitleMid">配线切换控件组</h4>
+            <div style="display: flex;flex-wrap:wrap;justify-content: flex-start;width:768px;margin:auto">
+                <div ng-repeat=" item in bindData" style="position: relative;">
+                  <div ng-switch="item.switch" class="patchSwitchFa">
+                    <div ng-switch-when="0" class="patchSwitch-other bgc-primary shadowHover shadow">
+                      <h2>LRU</h2>
+                      <h6>{{ item.name }}</h6>
+                    </div>
+                    <div ng-switch-when="1" class="patchSwitch-other bgc-sim shadowHover shadow">
+                      <h2>SIM</h2>
+                      <h6>{{ item.name }}</h6>
+                    </div>
+                    <div ng-switch-when="2" class="patchSwitch-other bgc-error shadowHover shadow">
+                      <h2>OPEN</h2>
+                      <h6>{{ item.name }}</h6>
+                    </div>
+                    <div ng-switch-when="9" class="patchSwitch-other bgc-complex shadowHover shadow">
+                      <h2>CPX</h2>
+                      <h6>{{ item.name }}</h6>
+                    </div>
+                    <div class="patchOption">
+                      <div class="patchOptionItem"  style="width: 33%;" ng-click="switchWire(item, 0)">
+                        真件
+                      </div>
+                      <div class="patchOptionItem"  style="width: 33%;" ng-click="switchWire(item, 1)">
+                        仿真件
+                      </div>
+                      <div class="patchOptionItem"  style="width: 33%;" ng-click="switchWire(item, 2)">
+                        断开
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <!-- 配线切换功能按钮组 -->
+
+    <!-- 方案切换悬浮窗 -->
+    <div class="floatWindow" id="sideBox">
+      <div class="floatWindow fwBtn" id="sideBoxBtn"><i class="icon ion-clipboard" style="font-size: 24px;"></i></div>
+
+
+      <div class="planBox" id="planBox">
+          <div class="planItem" ng-repeat="item in plansData;" ng-click="sltPlan($index)" ng-class="{planItemSelected: $index===planSelected, currentPlan: $index === planChoosed}">
+            <span style="width:10%;">{{$index+1}}</span>
+            <span style="width:25%;">{{item.tableName}}</span>
+            <span style="width:55%">{{item.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+            <span style="width:10%"><i class="icon ion-close" ng-click="delPlan($index)"></i></span>
+          </div>
+      </div>
+      <div class="detailBox">
+        <div style="display: flex">
+          <div style="width:25%;"><label>方案名称：</label></div>
+          <div style="width:75%;"><label>{{planShowName}}</label></div>
+        </div>
+        <div style="display: flex;">
+          <div style="width:25%;"><label>创建时间：</label></div>
+          <div style="width:75%;"><label>{{planShowCreatedTime | date: 'yyyy-MM-dd HH:mm:ss'}}</label></div>
+        </div>
+        <div style="display: flex">
+          <div style="width:25%;"><label>详细描述：</label></div>
+          <div style="width:75%;"><label>{{planShowDetails}}</label></div>
+        </div>
+      </div>
+
+      <div class="btnGroup">
+          <div class="btn btn-primary btn-block" id="createNewPlan">新建</div>
+          <div class="btn btn-warning btn-block" ng-click="changePlan()">切换</div>
+          <div class="btn btn-success btn-block" ng-click="updateTable()">保存</div>
+      </div>
+    </div>
+</div>
+
+<!-- 创建新计划 -->
+<div class="myPlan" id="myPlan">
+  <div class="blackBg"></div>
+  <div class="tableBox">
+      <div class="container">
+        <div class="row" style="margin-top:40px;">
+          <div class="col text-center"><h4>创建新方案</h4></div>
+        </div>
+        <div class="row" style="margin-top:30px;">
+          <div class="col">
+              <form>
+                <div class="form-group">
+                  <label>名称</label>
+                  <input type="text" class="form-control" id="planName" placeholder="请输入方案名称" maxlength="20">
+                </div>
+                <div class="form-group">
+                  <label>备注</label>
+                  <textarea type="text" class="form-control" id="planContent" rows="12" placeholder="请输入详细的备注信息"></textarea>
+                </div>
+              </form>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12">
+              <button class="btn btn-primary btn-block" id="confirm" ng-click="storePlanDetails('保存中')">确认</button>
+              <button class="btn btn-danger btn-block" id="closeWin">取消</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- 删除方案确认 -->
+<div class="deletePlan" id="deletePlan">
+  <div class="blackBg"></div>
+  <div class="tableBox">
+      <div class="container">
+        <div class="row" style="margin-top:40px;">
+          <div class="col text-center"><h4>删除方案</h4></div>
+        </div>
+        <div class="row" style="margin-top:30px;">
+          <div class="col">
+            <p id="delPlanDetails">您确认删除此方案吗？</p>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12">
+              <button class="btn btn-danger btn-block" id="admitDeletePlan" ng-click="adtDelPlan()">删除</button>
+              <button class="btn btn-primary btn-block" id="cancelDeletePlan" ng-click="cancelDelPlan()">取消</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div id="loading" class="loadingMod">
+    <div class="blackBg"></div>
+    <div class="loadBox">
+        <h4><i class="icon ion-load-a" style="color:rgb(13, 228, 78);"></i>{{loadingMessage}}</h4>
+      </div>
+</div>
+
+
+<div id="alert" class="loadingMod">
+    <div class="blackBg"></div>
+    <div class="loadBox">
+        <h4><i class="icon ion-alert-circled" style="color:rgb(207, 26, 26);"></i>{{loadingMessage}}</h4>
+      </div>
+</div>
+

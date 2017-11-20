@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h1>Bind Model</h1>
+      <p>Current AD Channel: {{AdSelected}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <h3>AD</h3>
+      <ul>
+        <li ng-repeat="item in AdDetails" ng-click="selectAd(item.id)">{{item | json}}</li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <h3 ng-click="bindDevice(DaDetails)">DA</h3>
+      <ul>
+        <li ng-repeat="item in DaDetails" ng-mouseup="selectDa(item.id)"><label>{{item | json}}</label></li>
+      </ul>
+      <h3 ng-click="bindDevice(LvdtDetails)">LVDT</h3>
+      <ul>
+        <li ng-repeat="item in LvdtDetails" ng-mouseup="selectLvdt(item.id)"><label>{{item | json}}</label></li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <button type="button" name="button" ng-click="getData()" class="btn btn-primary">Save</button>
+      <button type="button" ng-click="sendDataToServer()" class="btn btn-light">Send</button>
+    </div>
+  </div>
+</div>

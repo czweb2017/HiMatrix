@@ -1,0 +1,28 @@
+<div class="container-fluid lakers">
+
+    <!-- 配线绑定功能模块 -->
+    <!-- 左侧为用户树,右侧为真实设备树形结构 -->
+    <!-- lakers用来定义项目中的树形结构图样式 -->
+    <!-- 内容 -->
+    <div class="row">
+        <div class="col-6">
+            <h4 class="wireTitleMid"><i class="iocn ion-jet"></i>用户自定义数据</h4>
+            <div id="smlSys" style="overflow-y:auto;overflow-x:hidden;"></div>
+        </div>
+        <div class="col-6">
+            <h4 class="wireTitleMid"><i class="iocn ion-jet"></i>设备信息</h4>
+            <div id="realSys" style="overflow-y:auto;overflow-x:hidden;"></div>
+        </div>
+    </div>
+
+    <!-- 配线绑定功能按钮组 -->
+
+    <div class="row">
+        <div class="col-6 ml-auto" style="padding-top: 1rem;">
+            <button id="bind" class="btn btn-success">绑定</button>
+            <button id="save1" class="btn btn-warning" ng-click="storeWireBindData()">保存</button>
+            <button class="btn btn-success" ng-click="exportWireBindData()">导出文件</button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,15 @@
+{
+    "add": {
+      "parameterType": "object",
+      "sql": "insert into user (username,password) values (#{username},#{password})"
+    },
+    "loadById": {
+      "parameterType": "number",
+      "sql": "select * from user where id=#{id}"
+    },
+    "pager": {
+        "parameterType": "object",
+        "dynamic": true,
+        "sql": "select * from user <%if({{username}}) return 'where username like #{username}'%> <%if({{sort}}) return 'order by ${sort} ${order}'%> <%if({{pageSize}}) return 'limit #{pageOffset}, #{pageSize}'%>"
+    }
+  }
